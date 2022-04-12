@@ -15,7 +15,7 @@ public:
     void buildBottle(string *str){
         *str = "";
         this->getName(str);
-        *str += "\n";
+        *str += ":\n";
 
         *str += "\t";
         *str += "Price: ";
