@@ -13,7 +13,8 @@ void ColoredBottleDecorator::getPrice(double *pr) {
     *pr = *pr * this->default_multiplier;
 }
 
-void ColoredBottleDecorator::buildBottle(string *str) {
-    BottleDecorator::buildBottle(str);
-    *str += "\n\tColor: " + this->color + "";
+void ColoredBottleDecorator::buildAttributes(string *str) {
+    this->bottle->buildAttributes(str);
+    *str += "\n\tColor: " + this->color;
 }
+

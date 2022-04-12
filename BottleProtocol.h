@@ -12,17 +12,31 @@ class BottleProtocol {
 public:
     virtual void getName(string *str) = 0;
     virtual void getPrice(double *pr) = 0;
-    virtual void buildBottle(string *str) {
-        auto n = new string;
-        getName(n);
-        *str = *n + ":" + "\n\t" + "Price: ";
+    void buildBottle(string *str){
+        *str = "";
+        this->getName(str);
+        *str += "\n";
+
+        *str += "\t";
+        *str += "Price: ";
         auto p = new double;
         getPrice(p);
         *str += to_string(*p);
-        // Check this:
-        free(n);
+
+        // Build Its attributes
+        this->buildAttributes(str);
+
         free(p);
     }
+
+    /**
+     * Build other than default attributes.
+     * @param str
+     *
+     *  Attributes should concat str.
+     *  Each attribute should be added line by line with one `\\t` indentation.
+     */
+    virtual void buildAttributes(string *str) {}
 };
 
 

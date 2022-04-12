@@ -23,7 +23,6 @@ public:
     }
 
     void getName(string *str) override;
-
     void getPrice(double *pr) override;
 };
 

@@ -12,7 +12,7 @@
 
 class ColoredBottleDecorator : public BottleDecorator {
 public:
-    ColoredBottleDecorator(DefaultBottle *bottle, string color) : BottleDecorator(bottle) {
+    ColoredBottleDecorator(BottleProtocol *bottle, string color) : BottleDecorator(bottle) {
         this->color = std::move(color);
     }
 
@@ -23,7 +23,7 @@ private:
 public:
     void getPrice(double *pr) override;
     void getName(string *str) override;
-    void buildBottle(string *str) override;
+    void buildAttributes(string *str) override;
 };
 
 

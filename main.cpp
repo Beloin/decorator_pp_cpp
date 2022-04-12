@@ -4,6 +4,7 @@
 
 #include <iostream>
 #include <decorators/ColoredBottleDecorator.h>
+#include <decorators/PlastifiedBottle.h>
 #include "DefaultBottle.h"
 
 void cout_bottle(BottleProtocol *bottle, string *b);
@@ -15,14 +16,24 @@ int main() {
     auto *bottleC = new string;
 
     auto b1 = new DefaultBottle();
-
     cout << "Here's your DefaultBottle:\n";
     cout_bottle(b1, bottleC);
 
     auto decoratedBottle = new ColoredBottleDecorator(b1, "Pink");
-    decoratedBottle->buildBottle(bottleC);
     cout << "Here's your Colored DefaultBottle:\n";
     cout_bottle(decoratedBottle, bottleC);
+
+    auto plasticizedB = new PlastifiedBottle(decoratedBottle);
+    cout << "Here's your Plasticized DefaultBottle:\n";
+    cout_bottle(plasticizedB, bottleC);
+
+    auto anotherColor = new ColoredBottleDecorator(plasticizedB, "Blue");
+    cout << "Here's your Colored Plasticized DefaultBottle:\n";
+    cout_bottle(anotherColor, bottleC);
+
+    auto anotherColorInColor = new ColoredBottleDecorator(anotherColor, "Yellow");
+    cout << "Here's your Colored Colored Plasticized DefaultBottle:\n";
+    cout_bottle(anotherColorInColor, bottleC);
 
     return 0;
 }
