@@ -5,6 +5,7 @@
 #include <iostream>
 #include <decorators/ColoredBottleDecorator.h>
 #include <decorators/PlastifiedBottle.h>
+#include <decorators/StampedBottleDecorator.h>
 #include "DefaultBottle.h"
 
 void cout_bottle(BottleProtocol *bottle, string *b);
@@ -14,26 +15,27 @@ using namespace std;
 int main() {
     cout << "Get your bottle:\n";
     auto *bottleC = new string;
+    BottleProtocol* bottle;
 
-    auto b1 = new DefaultBottle();
+    bottle = new DefaultBottle();
     cout << "Here's your DefaultBottle:\n";
-    cout_bottle(b1, bottleC);
+    cout_bottle(bottle, bottleC);
 
-    auto decoratedBottle = new ColoredBottleDecorator(b1, "Pink");
+    bottle = new ColoredBottleDecorator(bottle, "Pink");
     cout << "Here's your Colored DefaultBottle:\n";
-    cout_bottle(decoratedBottle, bottleC);
+    cout_bottle(bottle, bottleC);
 
-    auto plasticizedB = new PlastifiedBottle(decoratedBottle);
+    bottle = new PlastifiedBottle(bottle);
     cout << "Here's your Plasticized DefaultBottle:\n";
-    cout_bottle(plasticizedB, bottleC);
+    cout_bottle(bottle, bottleC);
 
-    auto anotherColor = new ColoredBottleDecorator(plasticizedB, "Blue");
+    bottle = new ColoredBottleDecorator(bottle, "Blue");
     cout << "Here's your Colored Plasticized DefaultBottle:\n";
-    cout_bottle(anotherColor, bottleC);
+    cout_bottle(bottle, bottleC);
 
-    auto anotherColorInColor = new ColoredBottleDecorator(anotherColor, "Yellow");
-    cout << "Here's your Colored Colored Plasticized DefaultBottle:\n";
-    cout_bottle(anotherColorInColor, bottleC);
+    bottle = new StampedBottleDecorator(bottle, "Cute Cat");
+    cout << "Here's your Stamped DefaultBottle:\n";
+    cout_bottle(bottle, bottleC);
 
     return 0;
 }
